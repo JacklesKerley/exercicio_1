@@ -8,11 +8,11 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Rota
-app.get('/', (req, res) => {
+app.get('/idade', (req, res) => {
     res.render('verificacaoIdade')
 })
 
-app.post('/', (req, res) => {
+app.post('/idade', (req, res) => {
     const nome = req.body.nome
     const idade = req.body.idade
     let idadeValidada = ''
@@ -26,6 +26,8 @@ app.post('/', (req, res) => {
     } else {
         idadeValidada = 'Idoso'
     }
+
+    res.render("idade", {nome: nome, idade: idade, idadeValidada})
 })
 
 app.listen(3000, () => {console.log('App Rodando')})
