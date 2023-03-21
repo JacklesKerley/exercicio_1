@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
 app.get('/idade', (req, res) => {
     res.render('verificacaoIdade')
 })
-
 app.post('/idade', (req, res) => {
     const nome = req.body.nome
     const idade = req.body.idade
@@ -39,7 +38,6 @@ app.post('/idade', (req, res) => {
 app.get('/media', (req,res) => {
     res.render('mediaPonderada')
 })
-
 app.post('/media', (req, res) => {
     const atividade_pratica_laboratorio = parseFloat(req.body.atividade_pratica_laboratorio)
     const prova_semestre = parseFloat(req.body.prova_semestre)
@@ -64,9 +62,21 @@ app.post('/media', (req, res) => {
         media = 'valor acima de 10 ou abaixo de 0, verificar dados digitados.'
     }
 
-    res.render("media", {media})
+    res.render("media", {mediaPonderada, media})
 
 })
 
+// Rota Cadastro
+app.get('/cadastro', (req, res) => {
+    res.render('cadastro')
+})
+app.post('/cadastro', (req, res) => {
+    let nome = req.body.nome
+    let sobrenome = req.body.sobrenome
+    let dataNascimento = req.body.data_nascimento
+    let nacionalidade = req.body.nacionalidade
+
+    res.render('cadastroRealizado', {nome, sobrenome, dataNascimento, nacionalidade})
+})
 
 app.listen(3000, () => {console.log('App Rodando')})
